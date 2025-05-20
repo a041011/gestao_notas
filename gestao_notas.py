@@ -3,6 +3,7 @@ import json
 from flask import Flask, render_template, request
 from datetime import datetime
 import pygsheets
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -14,14 +15,15 @@ sh = gc.open("Gestão de lançamento de notas")
 def index():
     turmas_sheet = sh.worksheet_by_title("Turmas")
     turmas = turmas_sheet.get_all_records()
-    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+
     return render_template("index.html", turmas=turmas, data_hora=data_hora)
 
 @app.route('/privado', methods=['GET', 'POST'])
 def privado():
     turmas_sheet = sh.worksheet_by_title("Turmas")
     turmas = turmas_sheet.get_all_records()
-    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
 
     if request.method == 'POST':
         codigo = request.form.get('codigo', '').strip()
