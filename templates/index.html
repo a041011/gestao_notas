@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Gestão de Notas - Turmas</title>
+    <title>Gestão de Classificações</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
     <style>
         body {
@@ -99,7 +99,7 @@
 <body>
     <header>
         <img src="{{ url_for('static', filename='favicon.png') }}" alt="Ícone">
-        <h1>Gestão de Lançamento de Notas</h1>
+        <h1>Gestão de Lançamento de Classificações</h1>
     </header>
 
     <div class="alerta">
@@ -136,7 +136,7 @@
     {% endif %}
 
     <div class="footer">
-        Atualizado em {{ data_atual }}
+        <p class="rodape">Atualizado em {{ data_hora }}</p>
     </div>
 </body>
 </html>
