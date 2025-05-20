@@ -7,7 +7,7 @@ import pygsheets
 app = Flask(__name__)
 
 # Autenticação com Google Sheets usando variável de ambiente
-gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDENTIALS')
+gc = pygsheets.authorize(service_file='/etc/secrets/credenciais.json')
 sh = gc.open("Gestão de lançamento de notas")
 
 @app.route('/')
