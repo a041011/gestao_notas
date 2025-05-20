@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 from datetime import datetime
 import pygsheets
+import os
 
 app = Flask(__name__)
 
-# Autenticar com o ficheiro JSON
-gc = pygsheets.authorize(service_file='credenciais.json')
+# Autenticar com as credenciais armazenadas na variável de ambiente
+gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDENTIALS')
 sh = gc.open("Gestão de lançamento de notas")
 
 @app.route('/')
@@ -23,7 +24,7 @@ def privado():
 
     if request.method == 'POST':
         codigo = request.form.get('codigo', '').strip()
-        if codigo == "1234":
+        if codigo == "1234":  # <-- Aqui podes mudar para algo mais seguro
             alunos_sheet = sh.worksheet_by_title("Alunos")
             alunos = alunos_sheet.get_all_records()
             return render_template("alunos.html", alunos=alunos)
@@ -33,9 +34,10 @@ def privado():
 
     return render_template("index.html", turmas=turmas, data_hora=data_hora)
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Porta obrigatória para o Render
+    app.run(host='0.0.0.0', port=port)
+
 
 
 
