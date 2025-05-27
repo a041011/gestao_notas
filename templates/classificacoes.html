@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <title>Classificações</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .voltar {
+            margin-top: 20px;
+        }
+
+        .voltar a {
+            background-color: #3498db;
+            padding: 8px 14px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .rodape {
+            margin-top: 25px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Classificações dos Alunos</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID Turma</th>
+            <th>Turma</th>
+            <th>Número de Aluno</th>
+            <th>Nome de Aluno</th>
+            <th>M1</th>
+            <th>M2</th>
+            <th>M3</th>
+            <th>Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for registo in classificacoes %}
+        <tr>
+            <td>{{ registo['ID turma'] }}</td>
+            <td>{{ registo['Turma'] }}</td>
+            <td>{{ registo['Número de Aluno'] }}</td>
+            <td>{{ registo['Nome de Aluno'] }}</td>
+            <td>{{ registo['M1'] }}</td>
+            <td>{{ registo['M2'] }}</td>
+            <td>{{ registo['M3'] }}</td>
+            <td>{{ registo['Final'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="rodape">
+    <p>Atualizado em {{ data_hora }}</p>
+</div>
+
+<div class="voltar">
+    <a href="/">← Voltar à Página Principal</a>
+</div>
+
+</body>
+</html>
+
+
