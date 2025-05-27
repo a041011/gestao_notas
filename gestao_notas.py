@@ -26,7 +26,7 @@ def privado():
 
     if request.method == 'POST':
         codigo = request.form.get('codigo', '').strip()
-        if codigo == "1234":
+        if codigo == "turmas":
             alunos_sheet = sh.worksheet_by_title("Alunos")
             alunos = alunos_sheet.get_all_records()
             return render_template("alunos.html", alunos=alunos)
@@ -44,7 +44,7 @@ def classificacoes():
 
     if request.method == 'POST':
         codigo = request.form.get('codigo', '').strip()
-        if codigo == "1234":
+        if codigo == "notas":
             classificacoes_sheet = sh.worksheet_by_title("Classificações")
             classificacoes = classificacoes_sheet.get_all_records()
             return render_template("classificacoes.html", classificacoes=classificacoes, data_hora=data_hora)
