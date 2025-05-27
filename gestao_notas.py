@@ -33,6 +33,7 @@ def acesso():
 def alunos():
     alunos_sheet = sh.worksheet_by_title("Alunos")
     alunos = alunos_sheet.get_all_records()
+    data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
     return render_template("alunos.html", alunos=alunos)
 
 @app.route('/classificacoes')
