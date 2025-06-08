@@ -51,13 +51,19 @@ def classificacoes():
 @app.route('/estatisticas')
 def estatisticas():
     estatisticas_sheet = sh.worksheet_by_title("Estatísticas")
-    estatisticas = estatisticas_sheet.get_all_records()
+    estatisticas = estatisticas_sheet.get_values(start='A2', end='G100', include_tailing_empty=False)
+    resumo = estatisticas_sheet.get_values(start='J2', end='N100', include_tailing_empty=False)
 
-    resumo_sheet = sh.worksheet_by_title("Estatísticas")
-    resumo = resumo_sheet.get_all_records(start='J1', end='N100')  # ajusta intervalo se necessário
+    # cabeçalhos
+    estatisticas_header = ['ID Turma', 'Turma', 'Número do Aluno', 'Nome do Aluno', 'Disciplina', 'Nota', 'Aprovado']
+    resumo_header = ['ID Turma', 'Turma', 'Disciplina', 'Aprovados', 'Reprovados']
+
+    # transformar para lista de dicionários
+    estatisticas_data = [dict(zip(estatisticas_header, row)) for row in estatisticas if any(row)]
+    resumo_data = [dict(zip(resumo_header, row)) for row in resumo if any(row)]
 
     data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
-    return render_template("estatisticas.html", estatisticas=estatisticas, resumo=resumo, data_hora=data_hora)
+    return render_template("estatisticas.html", estatisticas=estatisticas_data, resumo=resumo_data, data_hora=data_hora)
 
 
 
