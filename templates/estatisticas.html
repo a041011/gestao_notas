@@ -19,6 +19,7 @@
             border-collapse: collapse;
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
 
         th, td {
@@ -57,44 +58,59 @@
     </style>
 </head>
 <body>
-
     <h1>Estatísticas de Desempenho</h1>
 
     <table>
-        <thead>
-            <tr>
-                <th>ID Turma</th>
-                <th>Turma</th>
-                <th>Número do Aluno</th>
-                <th>Nome do Aluno</th>
-                <th>Disciplina</th>
-                <th>Nota</th>
-                <th>Aprovado</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for linha in estatisticas %}
-            <tr>
-                <td>{{ linha['ID Turma'] }}</td>
-                <td>{{ linha['Turma'] }}</td>
-                <td>{{ linha['Número do Aluno'] }}</td>
-                <td>{{ linha['Nome do Aluno'] }}</td>
-                <td>{{ linha['Disciplina'] }}</td>
-                <td>{{ linha['Nota'] }}</td>
-                <td>{{ linha['Aprovado'] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+        <tr>
+            <th>ID Turma</th>
+            <th>Turma</th>
+            <th>Número do Aluno</th>
+            <th>Nome do Aluno</th>
+            <th>Disciplina</th>
+            <th>Nota</th>
+            <th>Aprovado</th>
+        </tr>
+        {% for e in estatisticas %}
+        <tr>
+            <td>{{ e['ID Turma'] }}</td>
+            <td>{{ e['Turma'] }}</td>
+            <td>{{ e['Número do Aluno'] }}</td>
+            <td>{{ e['Nome do Aluno'] }}</td>
+            <td>{{ e['Disciplina'] }}</td>
+            <td>{{ e['Nota'] }}</td>
+            <td>{{ e['Aprovado'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Resumo de Aprovações por Turma e Disciplina</h1>
+
+    <table>
+        <tr>
+            <th>ID Turma</th>
+            <th>Turma</th>
+            <th>Disciplina</th>
+            <th>Aprovados</th>
+            <th>Reprovados</th>
+        </tr>
+        {% for r in resumo %}
+        <tr>
+            <td>{{ r['ID Turma'] }}</td>
+            <td>{{ r['Turma'] }}</td>
+            <td>{{ r['Disciplina'] }}</td>
+            <td>{{ r['Aprovados'] }}</td>
+            <td>{{ r['Reprovados'] }}</td>
+        </tr>
+        {% endfor %}
     </table>
 
     <div class="rodape">
-        <p>Dados internos. Acesso restrito.</p>
-        <p>Atualizado em {{ data_hora }}</p>
+        Dados internos. Acesso restrito.<br>
+        Atualizado em {{ data_hora }}
     </div>
 
     <div class="botao-voltar">
         <a href="/">← Voltar à Página Pública</a>
     </div>
-
 </body>
 </html>
