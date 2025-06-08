@@ -52,8 +52,13 @@ def classificacoes():
 def estatisticas():
     estatisticas_sheet = sh.worksheet_by_title("Estatísticas")
     estatisticas = estatisticas_sheet.get_all_records()
+
+    resumo_sheet = sh.worksheet_by_title("Estatísticas")
+    resumo = resumo_sheet.get_all_records(start='J1', end='N100')  # ajusta intervalo se necessário
+
     data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
-    return render_template("estatisticas.html", estatisticas=estatisticas, data_hora=data_hora)
+    return render_template("estatisticas.html", estatisticas=estatisticas, resumo=resumo, data_hora=data_hora)
+
 
 
 @app.route('/disciplinas')
