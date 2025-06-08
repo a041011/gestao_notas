@@ -75,6 +75,14 @@ def disciplinas():
     return render_template("disciplinas.html", disciplinas=disciplinas, data_hora=data_hora)
 
 
+@app.route('/media')
+def media():
+    media_sheet = sh.worksheet_by_title("Média por turma")
+    medias = media_sheet.get_all_records()
+    data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+    return render_template("media.html", medias=medias, data_hora=data_hora)
+
+
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
