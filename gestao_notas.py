@@ -26,6 +26,8 @@ def acesso():
         return redirect('/estatisticas')
     elif codigo == "disciplinas":
         return redirect('/disciplinas')
+    elif codigo == "media":
+        return redirect('/media')
     else:
         turmas_sheet = sh.worksheet_by_title("Turmas")
         turmas = turmas_sheet.get_all_records()
