@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Média por Turma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #9b59b6; /* Roxo */
+            color: white;
+        }
+        .rodape {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .botao-voltar {
+            margin-top: 25px;
+        }
+        .botao-voltar a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .botao-voltar a:hover {
+            background-color: #2c80b4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Média por Turma e Módulo</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Turma</th>
+                <th>Turma</th>
+                <th>Módulo</th>
+                <th>Média</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for media in medias %}
+            <tr>
+                <td>{{ media['ID Turma'] }}</td>
+                <td>{{ media['Turma'] }}</td>
+                <td>{{ media['Módulo'] }}</td>
+                <td>{{ media['Média'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="rodape">Dados calculados automaticamente. Acesso restrito.</div>
+    <div class="botao-voltar">
+        <a href="/">← Voltar à Página Pública</a>
+    </div>
+</body>
+</html>
