@@ -24,6 +24,8 @@ def acesso():
         return redirect('/classificacoes')
     elif codigo == "estatisticas":
         return redirect('/estatisticas')
+    elif codigo == "disciplinas":
+        return redirect('/disciplinas')
     else:
         turmas_sheet = sh.worksheet_by_title("Turmas")
         turmas = turmas_sheet.get_all_records()
@@ -52,6 +54,15 @@ def estatisticas():
     estatisticas = estatisticas_sheet.get_all_records()
     data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
     return render_template("estatisticas.html", estatisticas=estatisticas, data_hora=data_hora)
+
+
+@app.route('/disciplinas')
+def disciplinas():
+    disciplinas_sheet = sh.worksheet_by_title("Disciplina")
+    disciplinas = disciplinas_sheet.get_all_records()
+    data_hora = (datetime.utcnow() + timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+    return render_template("disciplinas.html", disciplinas=disciplinas, data_hora=data_hora)
+
 
 
 if __name__ == '__main__':
